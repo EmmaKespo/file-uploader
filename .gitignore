@@ -1,0 +1,34 @@
+# --- Dependencies & Runtime ---
+node_modules/
+.pnpm-store/
+.yarn/
+
+# --- Environment Variables & Secrets ---
+.env
+.env.local
+.env.production
+.env.development
+
+# --- App Specific Temporary Buffers ---
+# Blocks uploaded files from accidentally leaking or syncing to GitHub
+uploads/
+/tmp/
+
+# --- Prisma Artifacts ---
+# Ignores local sqlite database files if you ever switch providers
+*.db
+*.db-journal
+
+# --- Operating System Noise ---
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# --- Logs & Debugging ---
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+/generated/prisma
