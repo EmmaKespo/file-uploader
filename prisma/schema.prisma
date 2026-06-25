@@ -1,14 +1,69 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-// Get a free hosted Postgres database in seconds: `npx create-db`
 
-generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
-}
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// User model for managing accounts
+model User {
+  id       String   @id @default(uuid())
+  username String   @unique
+  password String
+  folders  Folder[]
+  files    File[]
+}
+
+// Session model required by the prisma session store to remember user logins
+model Session {
+  id        String   @id
+  sid       String   @unique
+  data      String
+  expiresAt DateTime
+}
+
+// Folder model mapping out name parameters and hierarchical folder branching
+model Folder {
+  id        String       @id @default(uuid())
+  name      String
+  createdAt DateTime     @default(now())
+  userId    String
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  parentId  String? // Pointing to a parent folder ID allows creating subfolders
+  parent    Folder?      @relation("FolderHierarchy", fields: [parentId], references: [id], onDelete: Cascade)
+  children  Folder[]     @relation("FolderHierarchy")
+  files     File[]
+  shares    SharedLink[]
+}
+
+// File model tracking filenames, sizes, and explicit secure links
+model File {
+  id        String   @id @default(uuid())
+  name      String
+  size      Int // Stored in bytes
+  url       String // Cloudinary target address
+  publicId  String // Managed asset reference id to allow cloud deletion later
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  folderId  String?
+  folder    Folder?  @relation(fields: [folderId], references: [id], onDelete: Cascade)
+}
+
+// Extra Credit: SharedLink model storing unauthenticated folder share duration
+model SharedLink {
+  id        String   @id @default(uuid())
+  folderId  String
+  folder    Folder   @relation(fields: [folderId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
 
