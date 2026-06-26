@@ -1,4 +1,4 @@
-// Write Core Drive & Sharing Logic
+// Write Core Drive logic
 // to govern files, folders, and shared link actions.
 
 const { PrismaClient } = require('@prisma/client');
