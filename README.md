@@ -21,6 +21,14 @@ Filefolder is a self-contained, lightweight document management platform. It all
 4. **Expiring Folder Sharing (`/folders/:id/share`)**
    * **What it does:** Allows you to securely share a specific folder with an external friend, client, or coworker—even if they do not have an account on this system.
    * **How to use it:** Next to any folder, select a lifespan duration (e.g., *1 Day* or *10 Days*) and click **Share Link**. The system instantly generates a unique link. You can copy this link and email or text it to anyone. Once that timeframe passes, the link expires automatically, keeping your data secure.
-
+ 
+ Tech Stack & Architecture Design
+* **Runtime Environment:** Node.js (LTS version recommended)
+* **Framework:** Express.js (Model-View-Controller pattern architectural layout)
+* **View Engine:** Embedded JavaScript (EJS) rendered server-side
+* **ORM:** Prisma Client interacting with a relational layer (PostgreSQL configured by default)
+* **Authentication:** Passport.js (`passport-local` strategy) leveraging cookie-based session identifiers tracked statefully in the database using `@quixo3/prisma-session-store`.
+* **File Ingestion:** Multer (Memory-backed multi-part form data interception writing to a temporary local disk buffer).
+* **Persistent Object Storage:** Cloudinary SDK abstraction layers.
 
 
