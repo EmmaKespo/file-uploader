@@ -1,4 +1,4 @@
-file-drive/
+file-uploader/
 ├── config/
 │   ├── multer.js          # Multer storage & file validation configuration
 │   └── passport.js        # Passport local authentication & guard middleware
