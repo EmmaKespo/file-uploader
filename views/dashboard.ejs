@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head><title>My Cloud Workspace</title></head>
+<body>
+  <h1>File Manager Dashboard</h1>
+  <form action="/auth/logout" method="POST"><button type="submit">Logout</button></form>
+  <hr>
+
+  <h3>Add a New Subfolder Partition</h3>
+  <form action="/folders" method="POST">
+    <input type="text" name="name" placeholder="Folder Name" required />
+    <input type="hidden" name="parentId" value="<%= currentFolderId %>" />
+    <button type="submit">Create Folder</button>
+  </form>
+
+  <h3>Upload Form Input</h3>
+  <form action="/files/upload" method="POST" enctype="multipart/form-data">
+    <input type="file" name="file" required />
+    <input type="hidden" name="folderId" value="<%= currentFolderId %>" />
+    <button type="submit">Upload Target File</button>
+  </form>
+
+  <hr>
+  <h2>Folders</h2>
+  <% folders.forEach(folder => { %>
+    <div style="margin-bottom: 10px;">
+       <a href="/?folderId=<%= folder.id %>"><strong><%= folder.name %></strong></a>
+      <form action="/folders/<%= folder.id %>/share" method="POST" style="display:inline; margin-left: 20px;">
+        <select name="duration">
+          <option value="1">1 Day Link Lifetime</option>
+          <option value="10">10 Days Link Lifetime</option>
+        </select>
+        <button type="submit">Generate Share String</button>
+      </form>
+    </div>
+  <% }) %>
+
+  <h2>Files</h2>
+  <% files.forEach(file => { %>
+    <div> <a href="/files/<%= file.id %>"><%= file.name %></a></div>
+  <% }) %>
+</body>
+</html>

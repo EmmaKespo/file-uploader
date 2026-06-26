@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>Metadata Panel</title></head>
+<body>
+  <h1>File Overview Metrics</h1>
+  <p><strong>Name String:</strong> <%= file.name %></p>
+  <p><strong>Calculated Sizing:</strong> <%= (file.size / 1024).toFixed(2) %> Kilobytes</p>
+  <p><strong>Upload Date:</strong> <%= file.createdAt %></p>
+
+  <!-- Download button points directly to the persistent Cloudinary URL tracking parameter -->
+  <a href="<%= file.url %>" download="<%= file.name %>" target="_blank">
+    <button style="background: blue; color: white; padding: 10px;">Download File Asset</button>
+  </a>
+  <br><br>
+  <a href="/">Return to Storage Dashboard Workspace</a>
+</body>
+</html>

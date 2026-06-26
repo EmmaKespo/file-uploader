@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head><title>External Shared Portal Viewer</title></head>
+<body>
+  <h1 style="color: purple;">Public Folder Gateway Interface: <%= folder.name %></h1>
+  <p>This directory view is visible to unauthenticated users via temporal sharing.</p>
+  <hr>
+  <h3>Available Shared Resource Files</h3>
+  <% folder.files.forEach(file => { %>
+    <p>
+      📄 <%= file.name %> (<%= (file.size/1024).toFixed(2) %> KB) 
+      - <a href="<%= file.url %>" download target="_blank">Download Link</a>
+    </p>
+  <% }) %>
+</body>
+</html>
