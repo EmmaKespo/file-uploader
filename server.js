@@ -5,9 +5,13 @@ const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
 const { passport } = require('./config/passport');
+import cors from 'cors';
+
 
 const app = express();
 const prisma = new PrismaClient();
+
+app.use(cors());
 
 // Verification block ensuring the uploads folder exists before writing files to it
 if (!fs.existsSync('./uploads')) {
@@ -42,4 +46,4 @@ app.use('/auth', require('./routes/auth'));
 app.use('/', require('./routes/drive'));
 
 // Fire up open live server listening framework configurations
-app.listen(3000, () => console.log('FileDrive Engine running smoothly on execution port http://localhost:${PORT}'));
+app.listen(3000, () => console.log('FileDrive Engine running smoothly on execution port 3000'));
