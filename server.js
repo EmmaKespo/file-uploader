@@ -5,13 +5,15 @@ const { PrismaSessionStore } = require('@quixo3/prisma-session-store');
 const { PrismaClient } = require('@prisma/client');
 const fs = require('fs');
 const { passport } = require('./config/passport');
-import cors from 'cors';
+// Enable CORS for all routes
+const cors = require('cors');
 
 
 const app = express();
 const prisma = new PrismaClient();
-
 app.use(cors());
+
+
 
 // Verification block ensuring the uploads folder exists before writing files to it
 if (!fs.existsSync('./uploads')) {
