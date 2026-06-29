@@ -3,9 +3,8 @@
 
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
-const { PrismaClient } = require('@prisma/client');
 const bcrypt = require('bcryptjs');
-
+const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
 // Define local strategy validation logic
