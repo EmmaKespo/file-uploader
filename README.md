@@ -1,6 +1,6 @@
 # Filefolder - Minimalist Cloud Storage & Sharing Platform
 
-Filefolder is a self-contained, lightweight document management platform. It allows users to create secure accounts, manage files within a nested folder structure, view asset metadata, and create time-expiring public share links.
+Filefolder is a self-contained, lightweight document management platform. It allows users to create secure accounts, manage files within a nested folder structure, view asset metadata, and create time-expiring public share links. its another alternative for google drive but updated for more functionality
 
 
 ###  Core Features & How to Use Them
